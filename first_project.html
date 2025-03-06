@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+    <style>
+      .parent {
+        display: flex;
+        gap: 1em;
+      }
+      #yellow {
+        height: 100px;
+        width: 100px;
+        border: 1px solid black;
+        background-color: yellow;
+      }
+      #grey {
+        height: 100px;
+        width: 100px;
+        border: 1px solid black;
+        background-color: gray;
+      }
+      #red {
+        height: 100px;
+        width: 100px;
+        border: 1px solid black;
+
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Select any of the themes below!</h1>
+    <div class="parent">
+      <div id="yellow" class="button"></div>
+      <div id="grey" class="button"></div>
+      <div id="red" class="button"></div>
+    </div>
+    <script>
+      const buttons = document.querySelectorAll(".button");
+      const body = document.body;
+
+      buttons.forEach(function (button) {
+        button.addEventListener("click", function (e) {
+          if (e.target.id === "yellow") {
+            body.style.backgroundColor = e.target.id;
+          }
+          if (e.target.id === "grey") {
+            body.style.backgroundColor = e.target.id;
+          }
+          if (e.target.id === "red") {
+            body.style.backgroundColor = e.target.id;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

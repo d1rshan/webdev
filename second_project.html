@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        height: 100vh;
+        display: flex;
+      }
+      #time {
+        background-color: black;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        border-radius: 15px;
+        width: fit-content;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 id="time">hello</h2>
+    <script>
+      const time = document.querySelector("#time");
+
+      setInterval(function () {
+        let date = new Date();
+        time.innerText = date.toLocaleTimeString();
+      }, 1000); // will run every 1000ms
+    </script>
+  </body>
+</html>
