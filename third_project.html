@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+    <style>
+      body {
+        font-family: sans-serif;
+        background-color: black;
+        color: white;
+      }
+      #start {
+        background-color: yellowgreen;
+      }
+      #stop {
+        background-color: red;
+      }
+      button {
+        outline: none;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 15px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Start should change background color every second</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <script>
+      const startButton = document.getElementById("start");
+      const stopButton = document.getElementById("stop");
+
+      startButton.addEventListener("click", startProcess);
+      stopButton.addEventListener("click", endProcess);
+
+      let id;
+      function startProcess() {
+        id = setInterval(() => {
+          document.body.style.backgroundColor = randomColor();
+        }, 1000);
+      }
+
+      function endProcess() {
+        clearInterval(id);
+        id = null; // memory optimization
+      }
+
+      function randomColor() {
+        let values = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+          // 5 times
+          color += values[Math.round(Math.random() * 16)];
+        }
+        return color;
+      }
+    </script>
+  </body>
+</html>
