@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leetcode stats</title>
+  </head>
+  <body>
+    <h1>Leetcode stats</h1>
+    <input type="text" placeholder="Enter username" id="inputBox" />
+    <button>Submit</button>
+    <div>
+      <img src="" alt="" />
+      <h2 id="username"></h2>
+      <span id="content"></span>
+    </div>
+    <script>
+      const inputBox = document.getElementById("inputBox");
+      const button = document.querySelector("button");
+      button.addEventListener("click", function () {
+        const requestUrl = `https://alfa-leetcode-api.onrender.com/${inputBox.value}/solved`;
+        console.log(requestUrl);
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", requestUrl);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            const data = JSON.parse(this.responseText);
+
+            document.getElementById("username").innerText = inputBox.value;
+            document.getElementById(
+              "content"
+            ).innerText = `Total Solved: ${data.solvedProblem}
+            Easy: ${data.easySolved}
+            Medium: ${data.mediumSolved}
+            Hard: ${data.hardSolved}
+            `;
+          }
+        };
+        xhr.send();
+
+        const newUrl = `https://alfa-leetcode-api.onrender.com/${inputBox.value}`;
+
+        const xhr2 = new XMLHttpRequest();
+        xhr2.open("GET", newUrl);
+        xhr2.onreadystatechange = function () {
+          if (xhr2.readyState === 4) {
+            const data = JSON.parse(this.responseText);
+            console.log(data.avatar);
+            document.querySelector("img").setAttribute("src", data.avatar);
+          }
+        };
+        xhr2.send();
+      });
+    </script>
+  </body>
+</html>
