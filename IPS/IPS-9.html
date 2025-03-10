@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IPS 9</title>
+    <style>
+      .content {
+        width: fit-content;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Exercise 1: Modifying Webpage Content Dynamically</h2>
+    <h1 id="headline">Breaking News: Placeholder Headline</h1>
+    <button onclick="updateHeadline()">Update News</button>
+
+    <h2>Exercise 2: Finding and Highlighting Elements</h2>
+    <p class="content">JavaScript is a powerful programming language.</p>
+    <p class="content">
+      The Document Object Model (DOM) allows dynamic interactions.
+    </p>
+    <button onclick="highlightText()">Highlight Text</button>
+
+    <h2>Exercise 3: Adding New Comments Dynamically</h2>
+    <div id="comments"></div>
+    <input type="text" id="userComment" placeholder="Write a comment" />
+    <button onclick="addComment()">Post</button>
+
+    <h2>Exercise 4: Dynamic To-Do List</h2>
+    <ul id="taskList"></ul>
+    <input type="text" id="newTask" placeholder="Enter task" />
+    <button onclick="addTask()">Add Task</button>
+
+    <h2>Exercise 5: Theme Toggle (Dark Mode)</h2>
+    <button id="themeToggle" onclick="toggleTheme()">Enable Dark Mode</button>
+  </body>
+  <script>
+    let isDarkMode = false;
+    function toggleTheme() {
+      isDarkMode = !isDarkMode;
+      if (isDarkMode) {
+        document.body.style.backgroundColor = "black";
+        document.body.style.color = "white";
+      } else {
+        document.body.style.backgroundColor = "white";
+        document.body.style.color = "black";
+      }
+    }
+    function addTask() {
+      const inputBox = document.getElementById("newTask");
+      if (inputBox.value !== "") {
+        const newTask = document.createElement("li");
+        newTask.innerText = inputBox.value;
+        document.getElementById("taskList").appendChild(newTask);
+        inputBox.value = "";
+      }
+    }
+    function addComment() {
+      const inputBox = document.querySelector("input");
+      if (inputBox.value !== "") {
+        const newComment = document.createElement("p");
+        newComment.textContent = inputBox.value;
+        document.getElementById("comments").appendChild(newComment);
+        inputBox.value = "";
+      }
+    }
+    function highlightText() {
+      const pElements = document.getElementsByClassName("content");
+      Array.from(pElements).forEach((element) => {
+        element.style.backgroundColor = "yellow";
+      });
+    }
+    function updateHeadline() {
+      const headline = document.getElementById("headline");
+      headline.textContent = "Breaking News: JavaScript Is Amazing";
+    }
+  </script>
+</html>
