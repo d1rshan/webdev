@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        color: white;
+        font-family: Poppins;
+      }
+      body {
+        background-color: #111111;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        min-width: 400px;
+        width: 40%;
+        display: flex;
+        border-radius: 15px;
+        padding: 20px;
+        flex-direction: column;
+        gap: 1em;
+        background-color: #212121;
+      }
+
+      .container div {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .container input {
+        padding: 5px 10px;
+        outline: none;
+        border: none;
+        border-radius: 3px;
+        color: black;
+      }
+      button {
+        width: fit-content;
+        outline: none;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        padding: 10px 20px;
+        background-color: rgb(61, 36, 161);
+      }
+
+      button:hover {
+        animation-name: move;
+        animation-duration: 300ms;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes move {
+        0% {
+        }
+        100% {
+          background-color: rgb(85, 45, 244);
+          transform: scale(1.1);
+        }
+      }
+
+      p {
+        font-size: 13px;
+        font-weight: bold;
+        color: red;
+      }
+      .input-div {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Contact Us</h2>
+
+      <div>
+        <label for="name">Name</label>
+        <div class="input-div">
+          <input type="text" id="name" placeholder="Enter your name" />
+          <p id="name-msg"></p>
+        </div>
+      </div>
+
+      <div>
+        <label for="email">Email</label>
+        <div class="input-div">
+          <input type="email" id="email" placeholder="Enter your email" />
+          <p id="email-msg"></p>
+        </div>
+      </div>
+      <div>
+        <label for="pwd">Password</label>
+        <div class="input-div">
+          <input type="password" id="pwd" placeholder="Enter your password" />
+          <p id="pwd-msg"></p>
+        </div>
+      </div>
+
+      <button type="submit">Submit</button>
+    </div>
+  </body>
+  <script>
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const pwdInput = document.getElementById("pwd");
+    const submitBtn = document.querySelector("button");
+
+    const nameMsg = document.getElementById("name-msg");
+    const emailMsg = document.getElementById("email-msg");
+    const pwdMsg = document.getElementById("pwd-msg");
+
+    nameInput.addEventListener("keydown", (e) => {
+      if (e.key != "Backspace" && e.key != "Enter") nameMsg.textContent = "";
+    });
+
+    emailInput.addEventListener("keydown", (e) => {
+      emailMsg.textContent = "";
+    });
+
+    pwdInput.addEventListener("keydown", (e) => {
+      pwdMsg.textContent = "";
+    });
+
+    submitBtn.addEventListener("click", () => {
+      if (nameInput.value === "") {
+        nameMsg.textContent = "Enter your name!";
+      }
+      if (emailInput.value === "") {
+        emailMsg.textContent = "Enter your email!";
+      }
+      if (pwdInput.value === "") {
+        pwdMsg.textContent = "Enter your password!";
+      }
+    });
+  </script>
+</html>

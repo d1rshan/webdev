@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+    }
+    .input-field button {
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      padding: 8px 15px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      width: 40%;
+      height: 70%;
+      gap: 0.5em;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 25px;
+    }
+    #taskList button {
+      outline: none;
+      border: none;
+      background-color: transparent;
+    }
+    input {
+      flex: 1;
+      border: none;
+      padding: 8px;
+      outline: none;
+    }
+    ul li {
+      display: flex;
+      justify-content: space-between;
+      list-style: none;
+      border: 1px solid black;
+      padding: 5px 10px;
+      width: 100%;
+      border-radius: 15px;
+      margin-top: 5px;
+    }
+    .input-field {
+      display: flex;
+      justify-content: space-between;
+      border-radius: 15px;
+      overflow: hidden;
+      border: 1px solid black;
+    }
+    ul li span {
+      cursor: pointer;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h3>To Do App</h3>
+      <div class="input-field">
+        <input type="text" id="taskInput" placeholder="Enter your task" />
+        <button>Add</button>
+      </div>
+      <ul id="taskList"></ul>
+    </div>
+  </body>
+  <script>
+    const input = document.getElementById("taskInput");
+    const addTaskBtn = document.querySelector("button");
+    const taskList = document.querySelector("#taskList");
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        addTask();
+      }
+    });
+    addTaskBtn.addEventListener("click", addTask);
+
+    function addTask() {
+      if (input.value !== "") {
+        const newTask = document.createElement("li");
+
+        const task = document.createElement("span");
+        task.textContent = input.value;
+
+        const div = document.createElement("div");
+        const finishBtn = document.createElement("button");
+        finishBtn.textContent = "✅";
+        finishBtn.addEventListener("click", () => {
+          let dec = task.style.textDecoration;
+          task.style.textDecoration =
+            dec === "line-through" ? "none" : "line-through";
+        });
+        const delBtn = document.createElement("button");
+        delBtn.textContent = "❌";
+        delBtn.addEventListener("click", () => {
+          taskList.removeChild(newTask);
+        });
+        div.appendChild(finishBtn);
+        div.appendChild(delBtn);
+        newTask.appendChild(task);
+        newTask.appendChild(div);
+
+        taskList.appendChild(newTask);
+        input.value = "";
+      }
+    }
+  </script>
+</html>
