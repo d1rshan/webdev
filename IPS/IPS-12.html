@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      canvas {
+        border: 2px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas height="400" width="400"></canvas>
+    <button onclick="clearCanvas()">clear</button>
+  </body>
+  <script>
+    const canvas = document.querySelector("canvas");
+    const ctx = canvas.getContext("2d");
+    let drawing = false;
+    canvas.addEventListener("mousedown", () => (drawing = true));
+    canvas.addEventListener("mouseup", () => (drawing = false));
+    canvas.addEventListener("mousemove", (e) => draw(e));
+
+    function draw(e) {
+      if (!drawing) return;
+      ctx.fillStyle = "black";
+      ctx.beginPath();
+      ctx.arc(e.offsetX, e.offsetY, 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  </script>
+</html>

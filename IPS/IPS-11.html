@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IPS 11</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        color: white;
+        font-family: Poppins;
+      }
+      body {
+        background-color: #111111;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        min-width: 400px;
+        width: 40%;
+        display: flex;
+        border-radius: 15px;
+        padding: 20px;
+        flex-direction: column;
+        gap: 1em;
+        background-color: #212121;
+      }
+
+      .container input {
+        padding: 5px 10px;
+        outline: none;
+        border: none;
+        border-radius: 3px;
+        background-color: #3f3f3f;
+      }
+
+      .container select {
+        padding: 5px 10px;
+        outline: none;
+        border: none;
+        border-radius: 3px;
+        color: grey;
+        background-color: #3f3f3f;
+      }
+      .container select option {
+        color: grey;
+        cursor: pointer;
+      }
+      .container label {
+        font-weight: bold;
+      }
+
+      .container div {
+        display: flex;
+        gap: 5px;
+        flex-direction: column;
+      }
+
+      .container span label {
+        font-weight: normal;
+      }
+
+      .skills-section {
+        display: flex;
+        justify-content: start-evenly;
+        gap: 15px;
+      }
+
+      textarea {
+        background-color: #3f3f3f;
+        outline: none;
+        border-radius: 3px;
+        padding: 5px 10px;
+        border: none;
+        resize: vertical;
+      }
+
+      button {
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
+        outline: none;
+        padding: 10px 20px;
+        font-weight: bold;
+        background-color: rgb(66, 159, 159);
+        transition: ease;
+        transition-duration: 500ms;
+      }
+
+      button:hover {
+        background-color: rgb(179, 239, 239);
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Job Application Form</h2>
+      <div>
+        <label for="">Name </label>
+        <input type="text" placeholder="Enter your name" id="name" />
+      </div>
+      <div>
+        <label for="">Email</label>
+        <input type="text" placeholder="Enter your email" id="email" />
+      </div>
+      <div>
+        <label for="">Phone Number</label>
+        <input type="text" placeholder="Enter your phone" id="phone" />
+      </div>
+      <div>
+        <label for="gender">Gender</label>
+        <select name="" id="gender">
+          <option value="def">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div>
+        <label for="skills">Skills</label>
+        <span class="skills-section">
+          <label>
+            <input type="checkbox" id="html" />
+            HTML
+          </label>
+          <label>
+            <input type="checkbox" id="css" />
+            CSS
+          </label>
+          <label>
+            <input type="checkbox" id="js" />
+            JavaScript
+          </label>
+          <label>
+            <input type="checkbox" id="py" />
+            Python
+          </label>
+        </span>
+      </div>
+      <div>
+        <label for="country">Country</label>
+        <select name="" id="country">
+          <option value="def">Select Country</option>
+          <option value="ind">India</option>
+          <option value="us">USA</option>
+          <option value="rus">Russia</option>
+          <option value="jap">Japan</option>
+        </select>
+      </div>
+      <div>
+        <label for="comments">Comments</label>
+        <textarea name="" id=""></textarea>
+      </div>
+      <span>
+        <button>Submit</button>
+        <button>Reset</button>
+      </span>
+    </div>
+  </body>
+  <script>
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const phone = document.getElementById("phone");
+    const gender = document.getElementById("gender");
+
+    const inputs = document.querySelectorAll("input");
+    const selects = document.querySelectorAll("select");
+    const textarea = document.querySelector("textarea");
+
+    textarea.addEventListener("focus", (e) => {
+      textarea.style.backgroundColor = "white";
+      textarea.style.color = "black";
+    });
+    textarea.addEventListener("blur", (e) => {
+      textarea.style.backgroundColor = "";
+      textarea.style.color = "";
+    });
+    inputs.forEach((input) => {
+      input.addEventListener("focus", (e) => {
+        input.style.backgroundColor = "white";
+        input.style.color = "black";
+      });
+      input.addEventListener("blur", (e) => {
+        input.style.backgroundColor = "";
+        input.style.color = "";
+      });
+      input.onchange = function () {
+        if (this.value !== "") {
+          console.log("Entered something");
+        }
+      };
+    });
+    selects.forEach((select) => {
+      select.addEventListener("focus", (e) => {
+        select.style.backgroundColor = "white";
+        select.style.color = "black";
+      });
+      select.addEventListener("blur", (e) => {
+        select.style.backgroundColor = "";
+        select.style.color = "";
+      });
+    });
+  </script>
+</html>
