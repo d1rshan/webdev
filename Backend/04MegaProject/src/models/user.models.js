@@ -62,7 +62,7 @@ userSchema.pre("save", async function (next){
     next()
 })
 
-// we can create our own methods for mongodb ie (findById for a model those kinda stuff) and similary we can make custom functions for this user model:
+// we can create our own methods for mongodb ie (findById for a model those kinda stuff) and similarly we can make custom functions for this user model:
  userSchema.methods.isPasswordCorrect = async function (password){
    return await bcrypt.compare(password, this.password)
  }

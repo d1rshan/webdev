@@ -17,11 +17,11 @@ app.use(express.static("public"))
 
 // import routes
 import  {router as healthcheckRouter} from "./routes/healthcheck.routes.js"
-
+import { router as userRouter } from "./routes/user.routes.js"
 // routes
 // every model has a route ig, then in a route we define multiple sub routes 
 // and assign them their respective controllers to send back response
 // also routes are used to organize stuff cause we mostly use multiple requests (get, post, put, delete) for a common api url and it ensures we dont need to mention the common url for all the requests (ie routes)
 app.use("/api/v1/healthcheck",healthcheckRouter)
-
+app.use("/api/v1/users",userRouter)
 export {app} 
