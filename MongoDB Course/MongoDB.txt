@@ -1,0 +1,44 @@
+Important terms:
+
+MongoDB Hierarchy:
+Database
+Collection
+Document
+Field
+
+Document: each document has multiple fields
+eg: 
+{
+    "title": "John Wick", -> field 
+    "ratings: 5, -> field
+}
+
+Collection: each collection has multiple documents
+eg:
+COLLECTION:
+-> document 1:
+{
+    "title": "John Wick", -> field 
+    "ratings: 5, -> field
+}
+-> document 2:
+{
+    "title": "Terminator", -> field 
+    "ratings: 4, -> field
+}
+-> document 3:
+{
+    "title": "Despicable me", -> field 
+    "ratings: 10, -> field
+}
+
+database: Each database has multiple collections
+
+
+MONGOOSE
+what is mongoose?
+- mongoose is a ODM (Object Data Modelling) library for MongoDB and Node.js
+- mongoose makes it easier to work with MongoDB in Node.js by providing a 
+higher level abstraction layer
+- basically allows us to use classes and objects (schemas) and allows us to use them to directly
+do MongoDB operations
