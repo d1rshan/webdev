@@ -1,0 +1,21 @@
+JavaScript vs TypeScript
+
+- JavaScript is dynamically typed (like Python), we know type of variables at runtime
+- TypeScript is statically typed (like C,C++, Java), we know type of variables at compile time
+
+Problem with dynamically typed languages
+let number = 10
+number = "a"
+Math.round(number) // expects a number but now it is a string so we won't know this error at compile time
+
+Benefits of TypeScript
+- not just limited to type checking
+- code completion, refactoring
+
+Drawbacks of TypeScript
+- transpilation - as browsers dont understand typescript first they have to translate it to javascript for it to work
+- not fun fr
+- for simple projects js maybe better
+
+
+- use: tsc "typescript file name" for translating typescript to javascript
