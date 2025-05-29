@@ -25,7 +25,7 @@ export interface User extends Document{
     verifyCode: string;
     verifyCodeExpiry: Date;
     isVerified: boolean;
-    isAcceptingmessage: boolean;
+    isAcceptingMessage: boolean;
     messages: Message[]
 }
 
@@ -58,7 +58,7 @@ const UserSchema: Schema<User> = new Schema({
         type: Boolean,
         default: false,
     },
-    isAcceptingmessage: {
+    isAcceptingMessage: {
         type: Boolean,
     },
     messages: [MessageSchema] // this will store the messages itself not just ids
