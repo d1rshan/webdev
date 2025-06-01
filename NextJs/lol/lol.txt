@@ -1,0 +1,59 @@
+usually traditional servers -> where server runs 24/7 and servers the requests
+
+but nextjs -> serverless functions, each api route is a FaaS (Function as a Service)
+
+
+ Next.js is like a collection of stateless functions that run only when requested, 
+ not a big server that waits around.
+
+ api folder for api routes
+ each folder with page.tsx for frontend routes
+ layout.tsx is like a common part for each of these routes (like navbar)
+ at the root level layout.tsx is common part for all the routes of the application
+also ig we can do layout.tsx for common part (for nested routes)
+
+
+Next.js uses SSR for Server Components by default, and Client Components (marked with "use client")
+ behave like regular React components rendered on the client side.
+
+ why database connection and models are a bit different in nextjs?
+
+ because traditinoally in MERN based apps u run a server (and once u spin up it establishes a connection 
+ creates models and runs forever) but here nextjs calls functions to do so once we defined a model schema and
+  stored some data in that collection there is no need to overwrite it again by 
+ redifining the model schema again as that schema already exists with some data
+
+
+ In api's diff between Request, Response and NextRequest, NextResponse?
+
+-> Request, Response is the usual req and Response
+-> whereas the NextRequest, NextResponse is extended version of Request, Response
+
+In Next.js, Request and Response are the standard Web API objects used
+ for basic API handling — good for reading input and sending output. But when you need 
+ more advanced features like accessing cookies, handling redirects, or using middleware, 
+ Next.js provides NextRequest and NextResponse, which are extended versions with extra 
+ utilities tailored for server-side logic. Use Request/Response for simple APIs, and switch to 
+ NextRequest/NextResponse when you need Next.js-specific capabilities.
+
+
+AUTHENTICATION:
+Main Aim of authentication:
+for backend api requests we verify the session (in middleware) and then allow the user to the make requests
+for frontend routes we verify if user is logged in and only then allow him using protected routes, but for sign in and 
+signup pages we dont make them protected cause obvi
+
+
+KEY CONCEPT IN AUTH 🗣️🔥
+also this is my intution (correct me if am wrong)
+like for alll the routes (server side) and protected pages (frontend) when we use the session to
+ verify if user is currently logged in or not will it give user details (currently logged in user) so that we
+  can display the info related to that user like fetching user data from the database from the userid and 
+  stuff like that - YES
+
+is the details we can store in session payload custom and can be specified by us as 
+per our needs in better auth and for all other libraries too, they provide default set of values which can be tailored
+ as per our requirements - YES
+
+ okay so like mongodb there is neondb for the database and prisma is like mongoose
+
