@@ -1,0 +1,7 @@
+drizzle is just an orm layer 
+that writes sql on our behalf
+  
+Final Summary (Corrected View)
+generate: Figures out what’s changed → writes SQL for it (like git diff + git add)
+migrate: Applies those changes to DB (like git commit)
+push: Skips writing SQL → just directly changes the DB (like a force push or hotfix)
