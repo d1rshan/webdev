@@ -1,34 +1,16 @@
-"use client";
-import { useCounterStore } from "@/lib/store";
+import Link from "next/link";
 
-export default function App() {
-  const count = useCounterStore((state) => state.count);
+import { Button } from "@/components/ui/button";
+
+export default function Home() {
   return (
-    <div>
-      <h1>Welcome to the App</h1>
-      <p>This is the count of your application: {count}</p>
-      <SomeComponent />
+    <div className="flex flex-col h-full justify-center items-center gap-4">
+      <Button asChild>
+        <Link href={"/zustand"}>Zustand tut</Link>
+      </Button>
+      <Button asChild>
+        <Link href={"/react-hook-form"}>React hook form tut</Link>
+      </Button>
     </div>
   );
 }
-
-export const SomeComponent = () => {
-  const increment = useCounterStore((state) => state.increment);
-  const decrement = useCounterStore((state) => state.decrement);
-  return (
-    <div>
-      <button
-        onClick={increment}
-        className="bg-white p-2 px-8 text-black rounded-full"
-      >
-        +
-      </button>
-      <button
-        onClick={decrement}
-        className="bg-orange-400 p-2 px-8 text-black rounded-full"
-      >
-        -
-      </button>
-    </div>
-  );
-};
