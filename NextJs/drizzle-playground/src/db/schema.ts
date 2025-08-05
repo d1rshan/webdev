@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import {
   integer,
   pgTable,
@@ -58,4 +59,27 @@ export const likesTable = pgTable(
     }),
   },
   (t) => [primaryKey({ columns: [t.userId, t.postId] })] // composite primary key
+);
+
+// relations - we need to define all the relations present (both sides)
+// here i defined the one to one relation from user to userPreferences
+
+// just for drizzle to know that users have these relations so when querying we can use 'with' ie select user from userTable along with their posts, user preferences
+export const usersTableRelations = relations(usersTable, ({ one, many }) => {
+  return {
+    preferences: one(userPreferencesTable), // one to one relation from usersTable to usersPreferencesTable,
+    posts: many(postsTable), // we have to define postsTableRelations too...
+  };
+});
+
+export const userPreferencesTableRelations = relations(
+  userPreferencesTable,
+  ({ one, many }) => {
+    return {
+      user: one(usersTable, {
+        fields: [userPreferencesTable.userId],
+        references: [usersTable.id],
+      }),
+    };
+  }
 );
