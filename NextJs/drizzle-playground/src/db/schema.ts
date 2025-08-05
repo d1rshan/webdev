@@ -3,24 +3,20 @@ import {
   pgTable,
   varchar,
   uuid,
-  pgEnum,
   uniqueIndex,
   unique,
   boolean,
-  real,
   timestamp,
+  primaryKey,
 } from "drizzle-orm/pg-core";
 
-export const userRole = pgEnum("user_role", ["ADMIN", "USER"]);
-
-export const userTable = pgTable(
-  "user",
+export const usersTable = pgTable(
+  "users",
   {
     id: uuid("id").primaryKey().defaultRandom(),
     name: varchar("name", { length: 255 }).notNull(),
     age: integer("age").notNull(),
     email: varchar("email", { length: 255 }).notNull(),
-    role: userRole().default("USER"),
   },
   (t) => [
     uniqueIndex("email_index").on(t.email),
@@ -35,19 +31,31 @@ export const userPreferencesTable = pgTable("user_preferences", {
   id: uuid("id").primaryKey().defaultRandom(),
   emailUpdates: boolean("email_updates").default(true),
   userId: uuid("user_id")
-    .references(() => userTable.id, { onDelete: "cascade" })
+    .references(() => usersTable.id, { onDelete: "cascade" })
     .notNull()
     .unique(), // sets up a foreign key to userTable.id - ie only if userId exists then we can make the entry in this table
 });
 
 // one to many relation: userTable & postTable
-export const postTable = pgTable("post_table", {
+export const postsTable = pgTable("posts", {
   id: uuid("id").primaryKey().defaultRandom(),
   title: varchar("title", { length: 255 }).notNull(),
-  averageRating: real("average_rating").default(0),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
   authorId: uuid("author_id")
-    .references(() => userTable.id, { onDelete: "cascade" })
+    .references(() => usersTable.id, { onDelete: "cascade" })
     .notNull(),
 });
+
+export const likesTable = pgTable(
+  "likes",
+  {
+    userId: uuid("user_id").references(() => usersTable.id, {
+      onDelete: "cascade",
+    }),
+    postId: uuid("post_id").references(() => postsTable.id, {
+      onDelete: "cascade",
+    }),
+  },
+  (t) => [primaryKey({ columns: [t.userId, t.postId] })] // composite primary key
+);
