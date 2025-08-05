@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "once": "tsx src/main.ts",
     "dev": "tsx watch src/main.ts",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
