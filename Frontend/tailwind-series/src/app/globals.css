@@ -15,7 +15,7 @@
 .layout{
   background-color: red;
   height: 100vh;
-  background-image: linear-gradient(to bottom,white, #dbeafe, white);
+  background-image: linear-gradient(to bottom,white, #dbeafe, #e1ecfb);
 }
 
 .navbar-root{
@@ -95,4 +95,34 @@
   text-align: center;
   line-height: 1;
   margin-top: 40px;
+}
+
+.hero-subtitle{
+  font-size: 18px;
+  color: #595959;
+  text-align: center;
+  max-width: 550px;
+  margin: 20px auto;
+  line-height: 1.5;
+}
+
+.hero-cta{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.btn-secondary{
+  display: flex;
+  gap: 5px;
+  background-color: transparent;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  &:hover {
+    background-color: #D4E1EF;
+  }
 }
