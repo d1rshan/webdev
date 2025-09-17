@@ -8,12 +8,13 @@
 }
 
 .container{
+  position: relative;
   max-width: 1000px;
   margin: 0 auto;
+  height: 100vh;
 }
 
 .layout{
-  background-color: red;
   height: 100vh;
   background-image: linear-gradient(to bottom,white, #dbeafe, #e1ecfb);
 }
@@ -110,6 +111,7 @@
   display: flex;
   gap: 10px;
   justify-content: center;
+  align-items: center;
 }
 
 .btn-secondary{
@@ -125,4 +127,20 @@
   &:hover {
     background-color: #D4E1EF;
   }
+}
+
+.left-line{
+  position: absolute;
+  height: 100%;
+  width: 0.8px;
+  background-color: #DCE6F2;
+  left: -15px;
+}
+
+.right-line{
+  position: absolute;
+  height: 100%;
+  width: 0.8px;
+  background-color: #DCE6F2;
+  right: -15px;
 }

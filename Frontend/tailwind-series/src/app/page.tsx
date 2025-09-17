@@ -6,6 +6,8 @@ export default function Home() {
   return (
     <div className="layout">
       <Container>
+        <div className="right-line" />
+        <div className="left-line" />
         <Navbar />
         <Hero />
       </Container>
