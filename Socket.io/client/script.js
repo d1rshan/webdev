@@ -1,3 +1,5 @@
+const socket = io("http://localhost:3000");
+
 const joinRoombutton = document.getElementById('room-button');
 const messageInput = document.getElementById('message-input');
 const roomInput = document.getElementById('room-input');
