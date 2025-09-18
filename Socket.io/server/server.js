@@ -10,4 +10,9 @@ const io = new Server(3000, {
 io.on("connection", (socket) => {
   console.log("New client:", socket.id);
   io.emit("message", `${socket.id} has entered the chat`);
+
+  socket.on("send-message",(message) => {
+    console.log(message);
+    socket.broadcast.emit("recieve-message",message)
+  })
 });

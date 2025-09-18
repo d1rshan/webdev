@@ -74,11 +74,12 @@
       const socket = io("http://localhost:3000");
 
       socket.on("connect", () => {
-        displayMessage("Connected to server with id: " + socket.id);
-      });
-
-      socket.on("message", (msg) => {
-        displayMessage(msg);
+        socket.on("message", (msg) => {
+          displayMessage(msg);
+        });
+        socket.on("recieve-message", (msg) => {
+          displayMessage(msg);
+        });
       });
 
       const joinRoombutton = document.getElementById("room-button");
@@ -92,6 +93,9 @@
         const room = roomInput.value;
 
         if (message === "") return;
+
+        socket.emit("send-message", message);
+
         displayMessage(message);
         messageInput.value = "";
       });
