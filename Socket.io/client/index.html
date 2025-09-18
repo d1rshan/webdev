@@ -1,74 +1,110 @@
 <html>
-    <head>
-        <title>Socket.io</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 20px;
-            }
-            #message-container {
-                border: 1px solid #ccc;
-                padding: 10px;
-                height: 300px;
-                overflow-y: scroll;
-                margin-bottom: 10px;
-            }
-            #form {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-            }
-            .form-row {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-            #form label {
-                min-width: 70px;
-            }
-            #form input {
-                flex: 1;
-                padding: 10px;
-                font-size: 16px;
-                border: 1px solid #ccc;
-                border-radius: 20px;
-                height: 40px;
-                box-sizing: border-box;
-            }
-            #form button {
-                padding: 0 20px;
-                height: 40px;
-                font-size: 16px;
-                background-color: #28a745;
-                color: white;
-                border: none;
-                border-radius: 20px;
-                cursor: pointer;
-                transition: background-color 0.2s;
-                box-sizing: border-box;
-                display: flex;
-                align-items: center;
-            }
-            #form button:hover {
-                background-color: #218838;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="message-container"></div>
-        <form id="form">
-            <div class="form-row">
-                <label for="message-input">Message</label>
-                <input type="text" id="message-input"/>
-                <button type="submit" id="send-button">Send</button>
-            </div>
-            <div class="form-row">
-                <label for="room-input">Room</label>
-                <input type="text" id="room-input"/>
-                <button type="button" id="room-button">Join</button>
-            </div>
-        </form>
-        <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
-        <script src="script.js" type="module"></script>
-    </body>
+  <head>
+    <title>Socket.io</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      #message-container {
+        border: 1px solid #ccc;
+        padding: 10px;
+        height: 300px;
+        overflow-y: scroll;
+        margin-bottom: 10px;
+      }
+      #form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .form-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      #form label {
+        min-width: 70px;
+      }
+      #form input {
+        flex: 1;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        height: 40px;
+        box-sizing: border-box;
+      }
+      #form button {
+        padding: 0 20px;
+        height: 40px;
+        font-size: 16px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+      }
+      #form button:hover {
+        background-color: #218838;
+      }
+    </style>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  </head>
+  <body>
+    <div id="message-container"></div>
+    <form id="form">
+      <div class="form-row">
+        <label for="message-input">Message</label>
+        <input type="text" id="message-input" />
+        <button type="submit" id="send-button">Send</button>
+      </div>
+      <div class="form-row">
+        <label for="room-input">Room</label>
+        <input type="text" id="room-input" />
+        <button type="button" id="room-button">Join</button>
+      </div>
+    </form>
+
+    <script>
+      const socket = io("http://localhost:3000");
+
+      socket.on("connect", () => {
+        displayMessage("Connected to server with id: " + socket.id);
+      });
+
+      socket.on("message", (msg) => {
+        displayMessage(msg);
+      });
+
+      const joinRoombutton = document.getElementById("room-button");
+      const messageInput = document.getElementById("message-input");
+      const roomInput = document.getElementById("room-input");
+      const form = document.getElementById("form");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const message = messageInput.value;
+        const room = roomInput.value;
+
+        if (message === "") return;
+        displayMessage(message);
+        messageInput.value = "";
+      });
+
+      joinRoombutton.addEventListener("click", () => {
+        const room = roomInput.value;
+      });
+
+      function displayMessage(message) {
+        const div = document.createElement("div");
+        div.textContent = message;
+        document.getElementById("message-container").appendChild(div);
+      }
+    </script>
+  </body>
 </html>

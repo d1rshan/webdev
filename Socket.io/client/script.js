@@ -1,4 +1,15 @@
-const socket = io("http://localhost:3000");
+
+// const socket = io("http://localhost:3000");
+
+// socket.on("connect", () => { 
+//     console.log("hello")
+//     alert("Connected to server")
+// })
+
+// socket.on("message", (data) => {
+//     alert(data)
+//     displayMessage(data)
+// })
 
 const joinRoombutton = document.getElementById('room-button');
 const messageInput = document.getElementById('message-input');

@@ -1,11 +1,13 @@
-const io = require("socket.io")(3000,{
-    cors: {
-        origin: ["http://localhost:8000"],
-    },
-})
+// server.js
+const { Server } = require("socket.io");
 
-io.on("connection", socket => {
-   console.log(socket.id)
-})
+const io = new Server(3000, {
+  cors: {
+    origin: "http://localhost:8000", // allow your frontend
+  },
+});
 
-
+io.on("connection", (socket) => {
+  console.log("New client:", socket.id);
+  io.emit("message", `${socket.id} has entered the chat`);
+});
