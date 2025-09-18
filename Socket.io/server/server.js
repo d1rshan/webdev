@@ -15,4 +15,8 @@ io.on("connection", (socket) => {
     console.log(message);
     socket.broadcast.emit("recieve-message",message)
   })
+
+  socket.on("disconnect",() => {
+    io.emit("message",`${socket.id} left the chat :(`)
+  })
 });
