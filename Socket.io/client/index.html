@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>Socket.io</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            #message-container {
+                border: 1px solid #ccc;
+                padding: 10px;
+                height: 300px;
+                overflow-y: scroll;
+                margin-bottom: 10px;
+            }
+            #form {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .form-row {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            #form label {
+                min-width: 70px;
+            }
+            #form input {
+                flex: 1;
+                padding: 10px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 20px;
+                height: 40px;
+                box-sizing: border-box;
+            }
+            #form button {
+                padding: 0 20px;
+                height: 40px;
+                font-size: 16px;
+                background-color: #28a745;
+                color: white;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                transition: background-color 0.2s;
+                box-sizing: border-box;
+                display: flex;
+                align-items: center;
+            }
+            #form button:hover {
+                background-color: #218838;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="message-container"></div>
+        <form id="form">
+            <div class="form-row">
+                <label for="message-input">Message</label>
+                <input type="text" id="message-input"/>
+                <button type="submit" id="send-button">Send</button>
+            </div>
+            <div class="form-row">
+                <label for="room-input">Room</label>
+                <input type="text" id="room-input"/>
+                <button type="button" id="room-button">Join</button>
+            </div>
+        </form>
+        <script src="script.js"></script>
+    </body>
+</html>
