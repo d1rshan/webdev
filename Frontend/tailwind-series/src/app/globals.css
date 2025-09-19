@@ -1,5 +1,32 @@
 @import "tailwindcss";
 
-@theme{
-    --color-primary: oklch(79.2% 0.209 151.711);
+
+:root{
+    --primary: #CBA6F7;
+    --background: #F5F5F5;
+    --foreground: #A6ADC8;
+    --border: #45475A;
+    --title: #EBEBEB
+    
 }
+
+.dark{
+    --background: #121212;
+}
+
+.ascii-art{
+    letter-spacing: 0;
+    font-family: 'Courier New', monospace;
+    line-height: 1;
+}
+
+@theme inline{
+    --color-primary: var(--primary);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-secondary: var(--border);
+    --color-heading: var(--title);
+}
+/* @theme{
+    --color-primary: oklch(79.2% 0.209 151.711);
+} */
